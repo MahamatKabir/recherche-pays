@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> animation</title>
+    <link rel="stylesheet" href="jeuanime.css">
+</head>
+<body>
+      <div class="clock">
+          <div>
+              <div class="date"></div>
+              <div class="day"></div>
+          </div>
+          <div class="dot"></div>
+          <div>
+              <div class="hour-hand"></div>
+              <div class="minute-hand"></div>
+              <div class="second-hand"></div>
+          </div>
+          <div>
+              <span class="h3">3</span>
+              <span class="h6">6</span>
+              <span class="h9">9</span>
+              <span class="h12">12</span>
+          </div>
+          <div class="diallines"></div>
+      </div>
+<script type="text/javascript">
+    var diallines = document.getElementsByClassName('diallines');
+    var clockE1 = document.getElementsByClassName('clock')[0];
+
+    for(var i=1;i <60; i++) {
+        clockE1.innerHTML += "<div class=\"diallines\"></div>";
+        diallines[i].style.transform = "rotate(" + 6 * i + "deg)";
+    }
+    function clock(){
+        var weekday = new Array(7),
+        d = new Date(),
+        h = d.getHours(),
+        m = d.getMinutes(),
+        s = d.getSeconds(),
+        date = d.getDate(),
+        month = d.getMonth() + 1,
+        year = d.getFullYear(),
+
+        hdeg = h * 30 + m * (360/720),
+        mdeg = m * 30 + s * (360/720),
+        sdeg = s * 6,
+
+        hE1 = document.querySelector('.hour-hand'),
+        mE1 = document.querySelector('.minute-hand'),
+        sE1 = document.querySelector('.second-hand'),
+        dateE1 = document.querySelector('.date'),
+        dayE1 = document.querySelector('.day');
+
+        weekday[0] = "sunday";
+        weekday[0] = "Monday";
+        weekday[0] = "Tuesday";
+        weekday[0] = "Wednesday";
+        weekday[0] = "Thursday";
+        weekday[0] = "Friday";
+        weekday[0] = "Saturday";
+
+        var day = weekday[d.getDay()];
+        hE1.style.transform = "rotate("+hdeg+"deg)";
+        mE1.style.transform = "rotate("+mdeg+"deg)";
+        sE1.style.transform = "rotate("+sdeg+"deg)";
+        dateE1.innerHTML = date+"/"+month+"/"+year;
+        dayE1.innerHTML = day;
+    }
+    setInterval("clock()",100);
+</script>
+</body>
+</html>
